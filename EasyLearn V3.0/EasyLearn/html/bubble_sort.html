@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Algorithm - Bubble sort</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <link rel="stylesheet" href="../css/card.css">
+    <link rel="stylesheet" href="../css/cat1.css">
+    <script src="../js/choicecard.js"></script>
+    <script src="../js/changecard.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/login.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        /* Full height image header */
+        .bgimg-1 {
+            background-position: center;
+            background-size: cover;
+            background-image: url("/w3images/mac.jpg");
+            min-height: 100%;
+        }
+
+        /* Create a flex container for the main content */
+        .content {
+            flex: 1; /* Take up remaining vertical space */
+            overflow-y: auto; /* Add vertical scrollbar if needed */
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+
+        .topics {
+            padding: 10px;
+        }
+
+        .text-style {
+            font-size: 21px;
+            padding-left: 30px; /* 左侧间距 */
+            padding-right: 50px; /* 右侧间距 */
+        }
+
+        .second-title-style {
+            font-size: 24px;
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <script src="prism.js"></script>
+    <a name="home" id="home"></a>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-card" id="myNavbar">
+            <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+            <!-- Right-sided navbar links -->
+            <div class="w3-right w3-hide-small">
+                <a href="index.html#about" class="w3-bar-item w3-button">INTRO</a>
+                <a href="team.html" class="w3-bar-item w3-button"> TEAM</a>
+                <a href="learn_now.html" class="w3-bar-item w3-button"><strong>LEARN NOW!</strong></a>
+                <a href="onlinejudge.html" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+                <a id="lognt" href="login.html" class="w3-bar-item w3-button">LOG IN/SIGN UP</a>
+            </div>
+            <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+    <head>
+        <title>Sorting</title>
+    </head>
+
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+        <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">INTRO</a>
+        <a href="team.html" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+        <a href="learn_now.html" onclick="w3_close()" class="w3-bar-item w3-button">LEARN NOW!</a>
+        <a href="onlinejudge.html" onclick="w3_close()" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+        <a id="lognt2" href="login.html" onclick="w3_close()" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+      </nav>
+      <script>showlogbutton();</script>
+    <!-- Your own introduction here -->
+    <div class="w3-sidebar w3-bar-block" style="width:20%;margin-top:70px;right: 0;height:calc(100vh - 200px);">
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Sorting<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+              <a href="bubble_sort.html" class="w3-bar-item w3-button">Bubble Sort</a>
+              <a href="selection_sort.html" class="w3-bar-item w3-button">Selection Sort</a>
+              <a href="merge_sort.html" class="w3-bar-item w3-button">Merge Sort</a>
+              <a href="quick_sort.html" class="w3-bar-item w3-button">Quick Sort</a>
+              <a href="heap_sort.html" class="w3-bar-item w3-button">Heap Sort</a>
+            </div>
+        </div>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Searching<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+              <a href="bfs.html" class="w3-bar-item w3-button">BFS</a>
+              <a href="dfs.html" class="w3-bar-item w3-button">DFS</a>
+            </div>
+        </div>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Data Structures<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+              <a href="Array.html" class="w3-bar-item w3-button">Array</a>
+              <a href="Structure.html" class="w3-bar-item w3-button">Struct Data Structure</a>
+              <a href="Linked_List.html" class="w3-bar-item w3-button">Linked List</a>
+              <a href="Queue.html" class="w3-bar-item w3-button">Queue</a>
+              <a href="heap.html" class="w3-bar-item w3-button">Heap</a>
+              <a href="tree.html" class="w3-bar-item w3-button">Tree</a>
+              <a href="stack.html" class="w3-bar-item w3-button">Stack</a>
+              <a href="graph.html" class="w3-bar-item w3-button">Graph</a>
+            </div>
+        </div>
+    </div>
+    <div class="content" style="margin-right: 20%;">
+        <div class="w3-container">
+            <p class="w3-jumbo topics w3-animate-top"><b>Bubble sort</b></p>
+            <div style="margin-top: 30px;"></div>
+            <div class="w3-left-align">
+                <p class="text-style">
+                    Bubble sort is a simple sorting algorithm. It is called bubble sort because during the execution of the algorithm, smaller elements slowly "float" to the top of the array like bubbles.
+                </p>
+            </div>
+
+            <img src="../image/bubble-sort.gif" alt="Bubble Sort GIF" style="width: 60%; height: auto;">
+
+          
+            <p class="text-style">This is the example code of bubble sort.</p>
+
+            <div class="w3-panel w3-card w3-light-grey">
+                <h3>Bubble sort</h3>
+                <div class="w3-code notranslate"><pre data-src="assets/style.css"><code class="language-clike">
+  // Assuming that the size of the array is n + 1, the bubbling sort starts at array subscript 1.
+  void bubble_sort(int *a, int n) {
+    bool flag = true; // Flag if sorting is complete
+    while (flag) {
+      flag = false;
+      for (int i = 1; i < n; ++i) {
+        if (a[i] > a[i + 1]) {
+          flag = true;
+          int t = a[i];
+          a[i] = a[i + 1];
+          a[i + 1] = t;
+        }
+      }
+    }
+  }
+
+</code></pre></div>
+            </div>  
+
+            <div id="123" class="w3-panel w3-card w3-light-grey" style="font-family: Verdana, Geneva, sans-serif;">
+
+                <h3>Quiz Question</h3>
+                    
+                
+                <ol style="list-style: none;">
+            
+                <div class="w3-container" style="overflow: hidden;margin: 0 auto;">
+                
+                <!--<div class="w3-white w3-round-large"> -->
+                   <!--	<div class="w3-container w3-grey w3-round-large" style="width:0%">0%</div> -->
+                 <!--</div> -->
+                <div class="w3-white">
+                    <div id="myBar" class="w3-container w3-blue w3-center" style="width:0%">0%</div>
+                </div>
+                <div class="w3-card-1" id="card1" style="padding-top:2%;display:flex">
+                    <!--题目开始-->
+                    <li>
+                    <strong><p>1.What is the average time complexity of Bubble Sort?</p ></strong>
+                    <ol type="A" style="padding-bottom:3%">
+                    <li><div class="cat1-button">
+                        
+                    
+                    <label class="ans1" style="width:300px;">
+                        <input type="radio" class="A" name="fom" value="O(n)" onClick="checkans(1,1,3)"> O(n)
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans2">
+                        <input type="radio" class="B" name="fom" value="O(nlogn)" onClick="checkans(2,1,3)"> O(nlogn)
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans3">
+                        <input type="radio" class="C" name="fom" value="O(2n)" onClick="checkans(3,1,3)"> O(2n)
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans4">
+                        <input type="radio" class="D" name="fom" value="O(n^2)" onClick="checkans(4,1,3)"> O(n^2)
+                    </label></div></li>
+                    
+                    </ol>
+                    
+                    <div class="#" style="padding-bottom:2%">
+                    <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(1)">Submit</button> </div>
+                
+                    <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+                    <p></p>
+                    <div class="w3-bar" style="padding-top:2%">
+                        <button class="w3-button w3-padding-small w3-border w3-disabled" id="prevButton" onClick="changepage(0,0)">&#10094; Prev </button>
+                        <button class="w3-button w3-padding-small w3-border " id="nextButton" onClick="changepage(0,1)">Next  &#10095;</button>
+                    </div>
+                    <!--<button id="prevButton" onClick="changepage(0,0)" style="opacity: 0.6; cursor: not-allowed">< Previous </button>-->
+                    <!--<button id="nextButton" onClick="changepage(0,1)">Next ></button>-->
+                    </li>
+                    <!--题目结束-->	
+                </div>
+                <div class="w3-card-1" id="card2" style="display:none;">
+                    <!--题目开始-->
+                    <li>
+                    <strong><p>2.Which of the following best describes the main drawback of the bubble sort algorithm?</p ></strong>
+                    <ol type="A" style="padding-bottom:3%">
+                    <li><div class="cat1-button">
+                        
+                    
+                    <label class="ans1" style="width:300px;">
+                        <input type="radio" class="A" name="fom" value="It is not stable." onClick="checkans(1,2,3)"> It is not stable.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans2">
+                        <input type="radio" class="B" name="fom" value="It has a high space complexity." onClick="checkans(2,2,3)"> It has a high space complexity.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans3">
+                        <input type="radio" class="C" name="fom" value="It has a slow average and worst-case time complexity." onClick="checkans(3,2,3)"> It has a slow average and worst-case time complexity.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans4">
+                        <input type="radio" class="D" name="fom" value="Above All." onClick="checkans(4,2,3)"> Above All.
+                    </label></div></li>
+                    
+                    </ol>
+                    
+                    <div class="#" style="padding-bottom:2%">
+                    <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(2)">Submit</button> </div>
+                
+                    <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+                    <p></p>
+                    <div class="w3-show-inline-block" style="padding-top:2%">
+                        <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(1,0)">&#10094; Prev </button>
+                        <button class="w3-button w3-padding-small w3-border" id="nextButton" onClick="changepage(1,1)">Next  &#10095;</button>
+                    </div>
+                    </li>
+                    <!--题目结束-->	
+                </div>
+                <div class="w3-card-1" id="card3" style="display:none;">
+                    <!--题目开始-->
+                    <li>
+                    <strong><p>3.When is bubble sort most efficient?</p ></strong>
+                    <ol type="A" style="padding-bottom:3%">
+                    <li><div class="cat1-button">
+                        
+                    
+                    <label class="ans1" style="width:300px;">
+                        <input type="radio" class="A" name="fom" value="When the input array is already sorted." onClick="checkans(1,3,3)"> When the input array is already sorted.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans2">
+                        <input type="radio" class="B" name="fom" value="When the input array is in reverse order." onClick="checkans(2,3,3)"> When the input array is in reverse order.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans3">
+                        <input type="radio" class="C" name="fom" value="When the imput array is in random order." onClick="checkans(3,3,3)"> When the imput array is in random order.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans4">
+                        <input type="radio" class="D" name="fom" value="Bubble sort has the same efficiency for all cases." onClick="checkans(4,3,3)"> Bubble sort has the same efficiency for all cases.
+                    </label></div></li>
+                    
+                    </ol>
+                    
+                    <div class="#" style="padding-bottom:2%">
+                    <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(3)">Submit</button> </div>
+                
+                    <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+                    <p></p>
+                    <div class="w3-show-inline-block" style="padding-top:2%">
+                        <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(2,0)">&#10094; Prev </button>
+                        <button class="w3-button w3-padding-small w3-border" id="nextButton" onClick="changepage(2,1)">Next  &#10095;</button>
+                    </div>
+                    </li>
+                    <!--题目结束-->	
+                </div>
+                <div class="w3-card-1" id="card4" style="display:none;">
+                    <!--题目开始-->
+                    <li>
+                    <strong><p>4.Bubble sort is a stable sorting algorithm. What does this mean?</p ></strong>
+                    <ol type="A" style="padding-bottom:3%">
+                    <li><div class="cat1-button">
+                        
+                    
+                    <label class="ans1" style="width:300px;">
+                        <input type="radio" class="A" name="fom" value="It maintains the relative order of equal elements in the sorted array." onClick="checkans(1,4,3)"> It maintains the relative order of equal elements in the sorted array.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans2">
+                        <input type="radio" class="B" name="fom" value="It sorts elements based on their stability." onClick="checkans(2,4,3)"> It sorts elements based on their stability.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans3">
+                        <input type="radio" class="C" name="fom" value="It is always faster than other sorting algorithms." onClick="checkans(3,4,3)"> It is always faster than other sorting algorithms.
+                    </label></div></li>
+                    
+                    
+                    <li><div class="cat1-button">
+                    <label class="ans4">
+                        <input type="radio" class="D" name="fom" value="It doesn't change the order of any elements during sorting." onClick="checkans(4,4,3)"> It doesn't change the order of any elements during sorting.
+                    </label></div></li>
+                    
+                    </ol>
+                    
+                    <div class="#" style="padding-bottom:2%">
+                    <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(4)">Submit</button> </div>
+                
+                    <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+                    <p></p>
+                    <div class="w3-show-inline-block" style="padding-top:2%">
+                        <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(3,0)">&#10094; Prev </button>
+                        <button class="w3-button w3-padding-small w3-border w3-disabled"  id="nextButton" onClick="changepage(3,1)">Next  &#10095;</button>
+                    </div>
+                    </li>
+                    <!--题目结束-->	
+                </div>
+               
+                    <!-- 在此添加更多的卡片 -->
+                </div>
+            
+                
+                </ol>
+            </div>
+            <!------------------------ 分界线 ------------------------------>
+          
+            <button class="w3-button w3-round w3-light-grey"><a href="onlinejudge.html">Try it your self!</a></button>
+        </div>
+      </div>
+      <br>
+      
+      
+      <!-- Modal for full size images on click-->
+      <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+        <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+          <img id="img01" class="w3-image">
+          <p id="caption" class="w3-opacity w3-large"></p>
+        </div>
+      </div>
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-64">
+        <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    </footer>
+
+    <script>
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+        // 在页面加载后运行 Prism.js
+        Prism.highlightAll();
+    </script>
+
+    <!-- Toggle between showing and hiding the sidebar when clicking the menu icon -->
+    <script>
+        var mySidebar = document.getElementById("mySidebar");
+
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+            } else {
+                mySidebar.style.display = 'block';
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

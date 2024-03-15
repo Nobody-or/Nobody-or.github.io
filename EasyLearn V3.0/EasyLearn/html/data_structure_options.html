@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LEARN NOW!</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" >
+    <script src="../bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="../js/jquery-3.7.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        let timer = null
+        $("div#talk1").hide();
+        $("div#talk2").hide();
+        $("div#mascot").click(function(){
+            clearTimeout(timer)
+            timer = setTimeout(function () {
+            $("div#talk1").delay("fast").fadeIn();
+            $("div#talk1").delay("slow").fadeOut();
+        }, 500)
+        });
+        $("div#mascot").dblclick(function(){
+            clearTimeout(timer)
+            $("div#talk2").delay("fast").fadeIn();
+            $("div#talk2").delay("slow").fadeOut();
+        });
+        $("div#mascot").click(function(){
+            $("div#mascot").animate({bottom: "4%"},"fast");
+            $("div#mascot").animate({bottom: "2%"});
+        });
+    });
+</script>
+<style>
+#mascot{
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    z-index: 100;
+    }
+.talk{
+    position: fixed;
+    bottom : 20%;
+    right: 11%;
+    z-index: 100;
+    display:none；
+}
+</style>
+
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+        body, html {
+          height: 100%;
+          line-height: 1.8;
+        }
+        /* Full height image header */
+        .bgimg-1 {
+          background-position: center;
+          background-size: cover;
+          background-image: url("/w3images/mac.jpg");
+          min-height: 100%;
+        }
+
+        /* Create a flex container for the main content */
+        .content {
+          flex: 1; /* Take up remaining vertical space */
+          overflow-y: auto; /* Add vertical scrollbar if needed */
+        }
+        
+        .w3-bar .w3-button {
+          padding: 16px;
+        }
+
+        .topics {
+          padding: 10px
+        }
+
+    </style>
+</head>
+    <body>
+      <a name="home" id="home"></a>
+      <!--吉祥物本体-->
+      <div id="mascot"><img src="../image/mas.png"></div>
+      <!--对话框-->
+      <div class="talk" id="talk1"><img src="../image/meow~.png"></div>
+      <div class="talk" id="talk2"><img src="../image/needanyhelp.png"></div>
+      <!-- Navbar (sit on top) -->
+      <div class="w3-top">
+        <div class="w3-bar w3-white w3-card" id="myNavbar">
+          <a href="index.html#home"><img src="../image/logo.jpg" width="5%" height="5%"></a>
+          <!-- Right-sided navbar links -->
+          <div class="w3-right w3-hide-small">
+            <a href="index.html#about" class="w3-bar-item w3-button">INTRO</a>
+            <a href="team.html" class="w3-bar-item w3-button"> TEAM</a>
+            <a href="learn_now.html" class="w3-bar-item w3-button"><strong>LEARN NOW!</strong></a>
+            <a href="onlinejudge.html" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+            <a id="lognt" href="login.html" class="w3-bar-item w3-button">LOG IN/SIGN UP</a>
+          </div>
+        </div>
+          <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+
+      <!-- Sidebar on small screens when clicking the menu icon -->
+      <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+        <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">INTRO</a>
+        <a href="team.html" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+        <a href="learn_now.html" onclick="w3_close()" class="w3-bar-item w3-button">LEARN NOW!</a>
+        <a href="onlinejudge.html" onclick="w3_close()" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+        <a id="lognt2" href="login.html" onclick="w3_close()" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+      </nav>
+      <script>showlogbutton();</script>
+
+      <!--Your own introduction here-->
+      <div class="content">
+        <div class="w3-container w3-center">
+          <br>
+          <br>
+          <br>
+          <h1><b>Data Structure</b></h1>
+          <br>
+          
+            <div class="w3-card-4">
+
+              <header class="w3-container w3-black">
+                <h2>Stack</h2>
+              </header>
+              
+              
+              <div class="w3-container w3-light-grey">
+                <br>
+                <p><b><i>A stack is an abstract data type that serves as a collection of elements, with two principal operations: push, which adds an element to the collection, and pop, which removes the most recently added element that was not yet removed. The order in which elements come off a stack gives rise to its alternative name, LIFO (for last in, first out). Additionally, a peek operation may give access to the top without modifying the stack.</i></b></p>
+              </div>
+              <a href="stack.html" style="text-decoration: none;"><footer class="w3-container w3-block btn w3-black w3-hover-grey">
+                <h5>LEARN NOW!</h5>
+                </footer></a>
+                <br>
+              <div class="w3-card-4">
+              <br>
+              <header class="w3-container w3-black">
+                <h2>Trees</h2>
+              </header>
+              
+              <div class="w3-container w3-light-grey">
+                <br>
+                <p><b><i>A tree is a widely used abstract data type that represents a hierarchical tree structure with a set of connected nodes. Each node in the tree can be connected to many children (depending on the type of tree), but must be connected to exactly one parent,[1] except for the root node, which has no parent (i.e., the root node as the top-most node in the tree hierarchy). </i></b></p>
+              </div>
+              
+              <a href="tree.html" style="text-decoration: none;"><footer class="w3-container w3-block btn w3-black w3-hover-grey">
+              <h5>LEARN NOW!</h5>
+              </footer></a>
+              <br>
+              <div class="w3-card-4">
+              <br>
+              <header class="w3-container w3-black">
+                <h2>Linked List</h2>
+              </header>
+              
+              <div class="w3-container w3-light-grey">
+                <br>
+                <p><b><i>A linked list is the most sought-after data structure when it comes to handling dynamic data elements. A linked list consists of a data element known as a node. And each node consists of two fields: one field has data, and in the second field, the node has an address that keeps a reference to the next node. </i></b></p>
+              </div>
+              
+              <a href="linked_list.html" style="text-decoration: none;"><footer class="w3-container w3-block btn w3-black w3-hover-grey">
+              <h5>LEARN NOW!</h5>
+              </footer></a>
+              
+            </div>
+            <br>
+            <a href="learn_now.html" class="btn btn-outline-secondary">More...</a>
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="w3-center w3-black w3-padding-64">
+        <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+        <div class="w3-xlarge w3-section">
+          <i class="fa fa-facebook-official w3-hover-opacity"></i>
+          <i class="fa fa-instagram w3-hover-opacity"></i>
+          <i class="fa fa-snapchat w3-hover-opacity"></i>
+          <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+          <i class="fa fa-twitter w3-hover-opacity"></i>
+          <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+      </footer>
+
+      <script>
+        // Modal Image Gallery
+        function onClick(element) {
+          document.getElementById("img01").src = element.src;
+          document.getElementById("modal01").style.display = "block";
+          var captionText = document.getElementById("caption");
+          captionText.innerHTML = element.alt;
+        }
+
+
+        // Toggle between showing and hiding the sidebar when clicking the menu icon
+        var mySidebar = document.getElementById("mySidebar");
+
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+          } else {
+            mySidebar.style.display = 'block';
+          }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+      </script>
+
+    </body>
+</html>

@@ -1,0 +1,275 @@
+<html>
+	<head>
+		<title>Maze</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <script src="../js/script.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+<script src="../js/login.js"></script>
+<script src="../js/jquery-3.7.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+      let timer = null
+      $("div#talk1").hide();
+      $("div#talk2").hide();
+      $("div#mascot").click(function(){
+          clearTimeout(timer)
+          timer = setTimeout(function () {
+          $("div#talk1").delay("fast").fadeIn();
+          $("div#talk1").delay("slow").fadeOut();
+      }, 500)
+      });
+      $("div#mascot").dblclick(function(){
+          clearTimeout(timer)
+          $("div#talk2").delay("fast").fadeIn();
+          $("div#talk2").delay("slow").fadeOut();
+      });
+      $("div#mascot").click(function(){
+          $("div#mascot").animate({bottom: "4%"},"fast");
+          $("div#mascot").animate({bottom: "2%"});
+      });
+  });
+</script>
+<style>
+#mascot{
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    z-index: 1;
+    }
+.talk{
+    position: fixed;
+    bottom : 20%;
+    right: 11%;
+    z-index: 1;
+    display:none；
+}
+</style>
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/mac.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+		<script>
+			function readFile(filename){
+			var fso = new ActiveXObject("Scripting.FileSystemObject")
+			var f = fso.OpenTextFile(filename,1)
+			var s = ""
+			while (!f.AtEndOfStream)
+			s += f.ReadLine()+"\n"
+			f.Close()
+			alert(s);
+      let i;
+      /*if(s=="AC"){
+        let user=[];
+        if (localStorage.user != null) {
+          user = loadUser();
+        }else{
+          return;
+        }
+        let current_user=loadCurrentUser();
+        for(i=0;i<=user.length;i++){
+            if(user[i].username==current_user){
+                break;
+            }
+        }
+        user[i].question.program_question[0]=1;
+        saveUser(user);
+      }*/
+		}
+		</script>
+		<script language="JavaScript">
+			function exec1(command){
+				var ws=new ActiveXObject("WScript.Shell");
+				ws.run(command);
+				ws=null;
+			}
+		</script>
+		<script language="JavaScript">
+			function input() {
+			text = document.getElementById("data").value;  
+			//alert(text);
+			var strFile = "E:/Easy/S006/run.cpp";	
+			var objFSO = new ActiveXObject("Scripting.FileSystemObject");
+			var objStream = objFSO.CreateTextFile(strFile, true);
+			objStream.WriteLine(text);  
+			objStream.Close();
+			var  cmd = new ActiveXObject("WScript.Shell");
+			cmd.run("cmd.exe /c E:/Easy/S006/ck.bat");
+			setTimeout(function() {
+				readFile("E:/Easy/S006/res.txt");
+			}, 5000);
+			
+		}
+		</script>
+	</head>
+	<body>
+    <script src="prism.js"></script>
+    <button class="chatbot-toggler">
+      <div id="mascot"><img src="../image/mas.png"></div>
+    </button>
+    <div class="chatbot">
+      <header>
+        <h2>Meow~</h2>
+        <span class="close-btn material-symbols-outlined">close</span>
+      </header>
+      <ul class="chatbox">
+        <li class="chat incoming">
+          <span class="material-symbols-outlined">smart_toy</span>
+          <p>Meow~<br>Need any help?</p>
+        </li>
+      </ul>
+      <div class="chat-input">
+        <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+        <span id="send-btn" class="material-symbols-rounded">send</span>
+      </div>
+    </div>
+    <a name="home" id="home"></a>
+  <!--吉祥物本体-->
+  <!--div id="mascot"><img src="../image/mas.png"></div-->
+  <!--对话框-->
+<div class="talk" id="talk1"><img src="../image/meow~.png"></div>
+<div class="talk" id="talk2"><img src="../image/needanyhelp.png"></div>
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <div style="vertical-align: middle">
+      <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+      <div id="wel" style="display: none;float: left;margin-top: 16px;">
+        <p><label id="greeting"></label>, <label id="un"></label></p>
+      </div>
+</div>
+<style>
+#wel{
+   margin: auto 8%;
+}
+</style>
+<script>showUserName()</script>
+<script>showGreeting()</script>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html#home" class="w3-bar-item w3-button">INTRO</a>
+      <a href="team.html" class="w3-bar-item w3-button"> TEAM</a>
+      <a href="learn_now.html" class="w3-bar-item w3-button"> LEARN NOW!</a>
+      <a href="onlinejudge.html" class="w3-bar-item w3-button"><strong>ONLINE JUDGE</strong></a>
+      <a id="lognt" href="login.html" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">INTRO</a>
+  <a href="team.html" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="learn_now.html" onclick="w3_close()" class="w3-bar-item w3-button">LEARN NOW!</a>
+  <a href="onlinejudge.html" onclick="w3_close()" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+  <a id="lognt2" href="login.html" onclick="w3_close()" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+</nav>
+<script>showlogbutton();</script>
+<!-- Header with full-height image -->
+
+<!-- About Section -->
+
+
+<!-- Promo Section - "We know design" -->
+
+
+<!-- Promo Section "Statistics" -->
+
+
+<!-- Work Section -->
+
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+<!-- Skills Section -->
+
+
+<!-- Pricing Section -->
+
+
+<!-- Contact Section -->
+<br>
+<br>
+<br>
+
+<div align="center"><h1>Submit code</h1></div>
+		<div id="input" align="center">
+			<textarea id="data" rows="10" cols="100" background:transparent class="w3-code notranslate">
+      </textarea>
+			
+		</div>
+    <div align="center"><button class="w3-button w3-sand" onclick="input()">submit</button></div>
+    
+        <footer class="w3-center w3-black w3-padding-64">
+            <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+          </footer>
+           
+          <script>
+          // Modal Image Gallery
+          function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+          }
+          
+          
+          // Toggle between showing and hiding the sidebar when clicking the menu icon
+          var mySidebar = document.getElementById("mySidebar");
+          
+          function w3_open() {
+            if (mySidebar.style.display === 'block') {
+              mySidebar.style.display = 'none';
+            } else {
+              mySidebar.style.display = 'block';
+            }
+          }
+          
+          // Close the sidebar with the close button
+          function w3_close() {
+              mySidebar.style.display = "none";
+          }
+          </script>
+          
+	</body>
+</html>

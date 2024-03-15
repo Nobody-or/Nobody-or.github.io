@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+
+.card-container {
+            width: 100%;
+            height: 42%;
+            margin: 0 auto;
+            overflow: hidden; /* 隐藏卡片后方的内容 */
+            position: relative;
+}
+.card {
+            width: 110%;
+            height: 200px;
+            position: relative;
+            display: flex;
+            /*justify-content: center;*/
+            /*align-items: center;*/
+            /*font-size: 24px;*/
+            /*font-weight: bold;*/
+            border: 0px solid #ccc;
+            background-color: #f1f1f1;
+            animation: slide 0s ease; /* 使用CSS动画 */
+}
+
+/* CSS动画定义 */
+@keyframes slide {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+}

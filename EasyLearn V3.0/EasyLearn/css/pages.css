@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+.card {
+	margin:25px 0px;
+}
+.card h1{
+	font-size:24px;
+}
+
+.card h2{ /*“使用建议”中的二级标题*/
+	font-weight:bold; font-size:18px;
+}
+
+#page-nav{ /*内容导航居中对齐*/
+	margin:20px auto; width:400px; font-size:14px;
+}
+.pagination{  width:400px;  }
+
+.current{ /*当前页标签加粗显示*/
+	font-weight:bold; }
+
+.image-right{
+	padding-top:30px;
+}
+
+#skill1,#skill2,#skill3,#skill4{ /*默认时不显示块*/
+	display:none;
+	margin-top:12px;
+}
+#skill1{  /*默认时显示第一个块*/
+	display:block;
+}
+
+#skill1 p,#skill2 p,#skill3 p,#skill4 p{
+	margin-top:5px;
+}
+
+#skillimage1,#skillimageover2,#skillimageover3,#skillimageover4{ /*默认时显示第一个按钮的高亮状态和其他按钮的默认状态*/
+	display:none;
+}
+

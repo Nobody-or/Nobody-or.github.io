@@ -1,0 +1,44 @@
+/* CSS Document */
+/*主导航*/
+nav a:hover{ /*增加悬停加下划线效果*/
+	border-bottom:2px #f8f9fa solid;
+}
+nav #current{  /*当前栏目颜色加亮，字体变粗*/
+	color:white;font-weight:bold;
+}
+nav a,nav a.navbar-brand:hover{  /*增加默认的下划线效果，颜色与背景颜色一样（因此不显示），以避免盒子大小不一致的问题*/
+	border-bottom:2px #343a40 solid;
+}
+/*面包屑&二级导航*/
+#bread{  /*面包屑所在块的设置*/
+	background-color:lightgray; color:black; font:12px/1.5 宋体;
+	padding:10px; padding-left:16px;
+}
+#bread a{  /*面包屑中的超链接颜色*/
+	color:black;
+}
+#bread a:hover{  /*面包屑中的超链接悬停效果*/
+	color:darkblue;font-weight:bold;
+}
+#bread #second-nav{  /*二级导航的字体稍微大一些*/
+	font-size:14px;
+}
+#bread #second-nav a{  /*为了实现按钮按下的效果，设置position:relative*/
+	font-size:14px; position:relative;
+}
+#bread #second-nav a:hover{  /*按钮按下效果*/
+	left:2px;top:2px;
+}
+/*footer*/
+footer{
+	height:50px; padding-top:12px;
+}
+/*media query*/		
+@media (max-width:768px){ /*Bootstrap在max-width:768px时导航条显示为按钮*/
+.logo-responsive{ /*小屏幕显示时logo稍微缩小*/
+	width:50px; height:auto;
+}
+nav a,footer{ /*小屏幕显示时，导航条文字和页脚文字缩小*/
+	font-size:smaller;
+}
+}

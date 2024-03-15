@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Date Structure - Linked List</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="../js/login.js"></script>
+<script src="../js/jquery-3.7.0.min.js"></script>
+<link rel="stylesheet" href="../css/prism.css">
+<script src="../js/prism.js"></script>
+<link rel="stylesheet" href="../css/card.css">
+<link rel="stylesheet" href="../css/cat1.css">
+<script src="../js/choicecard.js"></script>
+<script src="../js/changecard.js"></script>
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/pages.css">
+<script>
+    $(document).ready(function(){
+        let timer = null
+        $("div#talk1").hide();
+        $("div#talk2").hide();
+        $("div#mascot").click(function(){
+            clearTimeout(timer)
+            timer = setTimeout(function () {
+            $("div#talk1").delay("fast").fadeIn();
+            $("div#talk1").delay("slow").fadeOut();
+        }, 500)
+        });
+        $("div#mascot").dblclick(function(){
+            clearTimeout(timer)
+            $("div#talk2").delay("fast").fadeIn();
+            $("div#talk2").delay("slow").fadeOut();
+        });
+        $("div#mascot").click(function(){
+            $("div#mascot").animate({bottom: "4%"},"fast");
+            $("div#mascot").animate({bottom: "2%"});
+        });
+    });
+</script>
+<style>
+#mascot{
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    z-index: 1;
+    }
+.talk{
+    position: fixed;
+    bottom : 20%;
+    right: 11%;
+    z-index: 1;
+    display:none；
+}
+</style>
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/mac.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+.text-style {
+  font-size: 21px;
+  padding-left: 30px; /* 左侧间距 */
+  padding-right: 50px; /* 右侧间距 */
+}
+
+.second-title-style {
+  font-size: 24px;
+  padding-left: 30px;
+}
+</style>
+</head>
+<body>
+  <a name="home" id="home"></a>
+
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+    <!--div style="vertical-align: middle">
+      <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+      <div id="wel" style="display: none;float: left;">
+        <p><label id="greeting"></label>, <label id="un"></label></p>
+      </div>
+    </div>
+<style>
+#wel{
+   margin: auto 8%;
+}
+</style-->
+<!--script>showUserName()</script>
+<script>showGreeting()</script-->
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html#about" class="w3-bar-item w3-button">INTRO</a>
+      <a href="team.html" class="w3-bar-item w3-button"> TEAM</a>
+      <a href="learn_now.html" class="w3-bar-item w3-button"><strong>LEARN NOW!</strong></a>
+      <a href="onlinejudge.html" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+      <a id="lognt" href="login.html" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">INTRO</a>
+  <a href="team.html" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="learn_now.html" onclick="w3_close()" class="w3-bar-item w3-button">LEARN NOW!</a>
+  <a href="onlinejudge.html" onclick="w3_close()" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+  <a id="lognt2" href="login.html" onclick="w3_close()" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+</nav>
+<script>showlogbutton();</script>
+
+<div class="w3-sidebar w3-bar-block" style="width:20%;margin-top:70px;right: 0;height:calc(100vh - 200px);">
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Sorting<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="bubble_sort.html" class="w3-bar-item w3-button">Bubble Sort</a>
+        <a href="selection_sort.html" class="w3-bar-item w3-button">Selection Sort</a>
+        <a href="merge_sort.html" class="w3-bar-item w3-button">Merge Sort</a>
+        <a href="quick_sort.html" class="w3-bar-item w3-button">Quick Sort</a>
+        <a href="heap_sort.html" class="w3-bar-item w3-button">Heap Sort</a>
+      </div>
+  </div>
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Searching<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="bfs.html" class="w3-bar-item w3-button">BFS</a>
+        <a href="dfs.html" class="w3-bar-item w3-button">DFS</a>
+      </div>
+  </div>
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Data Structures<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="Array.html" class="w3-bar-item w3-button">Array</a>
+        <a href="Structure.html" class="w3-bar-item w3-button">Struct Data Structure</a>
+        <a href="Linked_List.html" class="w3-bar-item w3-button">Linked List</a>
+        <a href="Queue.html" class="w3-bar-item w3-button">Queue</a>
+        <a href="heap.html" class="w3-bar-item w3-button">Heap</a>
+        <a href="tree.html" class="w3-bar-item w3-button">Tree</a>
+        <a href="stack.html" class="w3-bar-item w3-button">Stack</a>
+        <a href="graph.html" class="w3-bar-item w3-button">Graph</a>
+      </div>
+  </div>
+</div>
+<div class="content" style="margin-right: 20%;">
+    <div class="w3-container">
+        <p class="w3-jumbo topics w3-animate-top"><b>Linked List</b></p>
+        <div style="margin-top: 30px;"></div>
+        <div class="w3-left-align">
+                <p class="text-style">
+                    A linked list is a data structure used to store data, connecting elements through pointers like a chain. It is characterized by the convenience of inserting and deleting data, but it is not good at finding and reading data.
+                </p>
+        </div>
+        <img src="../image/list.svg" alt="Linked List svg" style="margin-left:5%; width: 70%; height: auto;">
+    
+        <p class="second-title-style"><strong>Constructing a linked list</strong></p>
+        <p class="text-style">
+            Unidirectional linked table contains data field and pointer field where data field is used to store data and pointer field is used to connect the current node to the next node.
+        </p>
+      <div class="w3-panel w3-card w3-light-grey">
+          <div class="w3-code notranslate"><pre data-src="assets/style.css"><code class="language-clike">
+struct Node {
+    int value;
+    Node *next;
+};              
+
+</code></pre></div>
+      </div>  
+      <p class="second-title-style"><strong>Inserting (writing) data into a linked table</strong></p>
+      <p class="text-style">The process is roughly as follows:<br>
+        Ⅰ. Initialize the data to be inserted node;</p>
+        <img src="../image/list-insert-1.svg" alt="list-insert1 svg" style="margin-left:5%; width: 30%; height: auto;">
+        <p class="text-style">Ⅱ. Point node's next pointer to p's next node;</p>
+        <img src="../image/list-insert-2.svg" alt="list-insert2 svg" style="margin-left:5%; width: 30%; height: auto;">
+        <p class="text-style">Ⅲ. Point the next pointer of p to node.</p>
+        <img src="../image/list-insert-3.svg" alt="list-insert3 svg" style="margin-left:5%; width: 30%; height: auto;">
+    
+    
+      <div class="w3-panel w3-card w3-light-grey">
+          <div class="w3-code notranslate"><pre data-src="assets/style.css"><code class="language-clike">
+void insertNode(int i, Node *p) {
+    Node *node = new Node;
+    node->value = i;
+    node->next = p->next;
+    p->next = node;
+}
+
+</code></pre></div>
+      </div>  
+      <div id="123" class="w3-panel w3-card w3-light-grey" style="font-family: Verdana, Geneva, sans-serif;">
+
+        <h3>Quiz Question</h3>
+            
+      
+      <ol style="list-style: none;">
+    
+      <div class="w3-container" style="overflow: hidden;margin: 0 auto;">
+      
+        <!--<div class="w3-white w3-round-large"> -->
+         <!--	<div class="w3-container w3-grey w3-round-large" style="width:0%">0%</div> -->
+       <!--</div> -->
+        <div class="w3-white">
+            <div id="myBar" class="w3-container w3-blue w3-center" style="width:0%">0%</div>
+        </div>
+        <div class="w3-card-1" id="card1" style="padding-top:2%;display:flex">
+        <!--题目开始-->
+            <li>
+        <strong><p>1.What is the time complexity for searching for an element in a singly linked list of length "n" in the worst case?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="O(1)" onClick="checkans(1,1,12)"> O(1)
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="O(log n)" onClick="checkans(2,1,12)"> O(log n)
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="O(n)" onClick="checkans(3,1,12)"> O(n)
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="O(n^2)" onClick="checkans(4,1,12)"> O(n^2)
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(1)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+            <div class="w3-bar" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border w3-disabled" id="prevButton" onClick="changepage(0,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border " id="nextButton" onClick="changepage(0,1)">Next  &#10095;</button>
+            </div>
+        <!--<button id="prevButton" onClick="changepage(0,0)" style="opacity: 0.6; cursor: not-allowed">< Previous </button>-->
+            <!--<button id="nextButton" onClick="changepage(0,1)">Next ></button>-->
+        </li>
+            <!--题目结束-->	
+      </div>
+        <div class="w3-card-1" id="card2" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>2.Which of the following is NOT a common variation of a linked list?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="Singly linked list" onClick="checkans(1,2,12)"> Singly linked list
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="Doubly linked list" onClick="checkans(2,2,12)"> Doubly linked list
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="Triply linked list" onClick="checkans(3,2,12)"> Triply linked list
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="Circular linked list" onClick="checkans(4,2,12)"> Circular linked list
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(2)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(1,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border" id="nextButton" onClick="changepage(1,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+        <div class="w3-card-1" id="card3" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>3.What is a disadvantage of using a singly linked list compared to a doubly linked list?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="Singly linked lists require more memory." onClick="checkans(1,3,12)"> Singly linked lists require more memory.
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="Singly linked lists have slower search operations." onClick="checkans(2,3,12)"> Singly linked lists have slower search operations.
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="Singly linked lists have slower insertions at the beginning." onClick="checkans(3,3,12)"> Singly linked lists have slower insertions at the beginning.
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="Singly linked lists can't be traversed in both directions efficiently." onClick="checkans(4,3,12)"> Singly linked lists can't be traversed in both directions efficiently.
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(3)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(2,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border" id="nextButton" onClick="changepage(2,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+      <div class="w3-card-1" id="card4" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>4.What is the primary drawback of using linked lists compared to arrays?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="Linked lists are more complex to implement." onClick="checkans(1,4,12)"> Linked lists are more complex to implement.
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="Linked lists have slower access time for individual elements." onClick="checkans(2,4,12)"> Linked lists have slower access time for individual elements.
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="Linked lists are less memory-efficient." onClick="checkans(3,4,12)"> Linked lists are less memory-efficient.
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="Linked lists cannot store data of different types." onClick="checkans(4,4,12)"> Linked lists cannot store data of different types.
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(4)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(3,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border w3-disabled"  id="nextButton" onClick="changepage(3,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+       
+            <!-- 在此添加更多的卡片 -->
+        </div>
+    
+        
+      </ol>
+    </div>
+    <!------------------------ 分界线 ------------------------------>
+  <button class="w3-button w3-round w3-light-grey"><a href="onlinejudge.html">Try it your self!</a></button>
+  </div>
+</div>
+<br>
+
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+</footer>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+<script src="../js/conmment.js"></script>
+<script>
+  renderComments();
+</script>
+</body>
+</html>

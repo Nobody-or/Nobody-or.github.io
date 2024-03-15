@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LEARN NOW!</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/login.js"></script>
+<script src="../js/jquery-3.7.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        let timer = null
+        $("div#talk1").hide();
+        $("div#talk2").hide();
+        $("div#mascot").click(function(){
+            clearTimeout(timer)
+            timer = setTimeout(function () {
+            $("div#talk1").delay("fast").fadeIn();
+            $("div#talk1").delay("slow").fadeOut();
+        }, 500)
+        });
+        $("div#mascot").dblclick(function(){
+            clearTimeout(timer)
+            $("div#talk2").delay("fast").fadeIn();
+            $("div#talk2").delay("slow").fadeOut();
+        });
+        $("div#mascot").click(function(){
+            $("div#mascot").animate({bottom: "4%"},"fast");
+            $("div#mascot").animate({bottom: "2%"});
+        });
+    });
+</script>
+<style>
+#mascot{
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    z-index: 100;
+    }
+.talk{
+    position: fixed;
+    bottom : 20%;
+    right: 11%;
+    z-index: 100;
+    display:none；
+}
+</style>
+
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+        body, html {
+          height: 100%;
+          line-height: 1.8;
+        }
+        /* Full height image header */
+        .bgimg-1 {
+          background-position: center;
+          background-size: cover;
+          background-image: url("/w3images/mac.jpg");
+          min-height: 100%;
+        }
+
+        /* Create a flex container for the main content */
+        .content {
+          flex: 1; /* Take up remaining vertical space */
+          overflow-y: auto; /* Add vertical scrollbar if needed */
+        }
+        
+        .w3-bar .w3-button {
+          padding: 16px;
+        }
+
+        .topics {
+          padding: 10px
+        }
+
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 70%;
+        }
+    </style>
+</head>
+    <body>
+      <a name="home" id="home"></a>
+      <!-- Navbar (sit on top) -->
+      <div class="w3-top">
+        <div class="w3-bar w3-white w3-card" id="myNavbar">
+          <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+          <!--div style="vertical-align: middle">
+            <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+            <div id="wel" style="display: none;float: left;">
+              <p><label id="greeting"></label>, <label id="un"></label></p>
+            </div>
+          </div>
+      <style>
+      #wel{
+         margin: auto 8%;
+      }
+      </style-->
+      <!--script>showUserName()</script>
+      <script>showGreeting()</script-->
+          <!-- Right-sided navbar links -->
+          <div class="w3-right w3-hide-small">
+            <a href="index.html#about" class="w3-bar-item w3-button">INTRO</a>
+            <a href="team.html" class="w3-bar-item w3-button"> TEAM</a>
+            <a href="learn_now.html" class="w3-bar-item w3-button"><strong>LEARN NOW!</strong></a>
+            <a href="onlinejudge.html" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+            <a id="lognt" href="login.html" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+          </div>
+          <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar on small screens when clicking the menu icon -->
+      <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+        <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">INTRO</a>
+        <a href="team.html" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+        <a href="learn_now.html" onclick="w3_close()" class="w3-bar-item w3-button">LEARN NOW!</a>
+        <a href="onlinejudge.html" onclick="w3_close()" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+        <a id="lognt2" href="login.html" onclick="w3_close()" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+      </nav>
+      <script>showlogbutton();</script>
+
+      <!--Your own introduction here-->
+      <div class="w3-sidebar w3-bar-block" style="width:21%;margin-top:70px;right: 0;height:calc(100vh - 200px);">
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Sorting<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+              <a href="bubble_sort.html" class="w3-bar-item w3-button">Bubble Sort</a>
+              <a href="selection_sort.html" class="w3-bar-item w3-button">Selection Sort</a>
+              <a href="merge_sort.html" class="w3-bar-item w3-button">Merge Sort</a>
+              <a href="quick_sort.html" class="w3-bar-item w3-button">Quick Sort</a>
+              <a href="heap_sort.html" class="w3-bar-item w3-button">Heap Sort</a>
+            </div>
+        </div>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Searching<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+              <a href="bfs.html" class="w3-bar-item w3-button">BFS</a>
+              <a href="dfs.html" class="w3-bar-item w3-button">DFS</a>
+            </div>
+        </div>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Data Structures<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+              <a href="Array.html" class="w3-bar-item w3-button">Array</a>
+              <a href="Structure.html" class="w3-bar-item w3-button">Struct Data Structure</a>
+              <a href="Linked_List.html" class="w3-bar-item w3-button">Linked List</a>
+              <a href="Queue.html" class="w3-bar-item w3-button">Queue</a>
+              <a href="heap.html" class="w3-bar-item w3-button">Heap</a>
+              <a href="tree.html" class="w3-bar-item w3-button">Tree</a>
+              <a href="stack.html" class="w3-bar-item w3-button">Stack</a>
+              <a href="graph.html" class="w3-bar-item w3-button">Graph</a>
+            </div>
+        </div>
+    </div>
+      <div class="content" style="margin-right: 20%;">
+        <div class="w3-container">
+          <br>
+          <br>
+          <div class="w3-container">
+            <div class="w3-animate-bottom">
+              <div class="">
+                <div class="w3-card-4">
+                  <header class="w3-container">
+                    <br>
+                    <img src="../image/algorithms and datastructures.jpg" class="center" alt="Algorithms">
+                  </header>
+                  
+                  <div class="w3-container">
+                    <div class="algorithm">
+                      <br>
+                      <h1 class="w3-wide w3-center" style="padding-bottom:1%;padding-top:1%;text-shadow:1px 1px 0 #444"><b>Algorithms</b></h1>  
+                      <div class="description">
+                        <div class="mrmy" style="padding-bottom:1%;padding-top:1%;"><h3><b><i>"The algorithm is the bridge between machine and mind." - Richard Dawkins</i></b></h3></div>
+                      <h5>An algorithm is a step-by-step procedure for solving a problem. Algorithms are used in programming to solve a wide variety of problems, such as sorting, searching, and graph traversal.
+                        <br>
+                        <br>
+                        In programming, algorithms are typically written in pseudocode or a programming language. Pseudocode is a high-level language that is not specific to any programming language. It is used to describe the steps of an algorithm in a way that is easy to understand, regardless of the programming language that is used to implement the algorithm.
+                        <br>
+                        <br>
+                        Once an algorithm has been written, it can be implemented in a programming language. The implementation of an algorithm typically involves translating the pseudocode into the syntax of the programming language.
+                        <br>
+                        <br>
+                        The efficiency of an algorithm is measured by its time complexity and space complexity. Time complexity measures the amount of time it takes an algorithm to run, while space complexity measures the amount of memory it uses.
+                        <br>
+                        <br>
+                        There are many different algorithms that can be used to solve a particular problem. The best algorithm for a particular problem depends on the specific characteristics of the problem, such as the size of the input data, the desired accuracy, and the available resources.
+                        <br>
+                        <br>
+                        Here are some of the most common algorithms used in programming:
+                        <br>
+                        <ul>
+                          <li><b>Sorting algorithms</b>: These algorithms are used to sort a list of elements in ascending or descending order. Some common sorting algorithms include bubble sort, selection sort, insertion sort, merge sort, and quick sort.</li>
+                          <li><b>Search algorithms</b>: These algorithms are used to find an element with a given value in a data structure. Some common search algorithms include linear search, binary search, and hash table search.</li>
+                          <li><b>Graph algorithms</b>: These algorithms are used to solve problems on graphs, which are mathematical structures used to represent relationships between objects. Some common graph algorithms include Dijkstra's algorithm, Kruskal's algorithm, and Prim's algorithm.</li>
+                          <li><b>String algorithms</b>: These algorithms are used to manipulate strings, which are sequences of characters. Some common string algorithms include the KMP algorithm, the Rabin-Karp algorithm, and the Boyer-Moore algorithm.</li>
+                          <li><b>Machine learning algorithms</b> These algorithms are used to learn from data and make predictions. Some common machine learning algorithms include linear regression, logistic regression, decision trees, and support vector machines.</li>
+                        </ul>
+                      </h5>
+                      </div>
+                    </div>
+                    <div class="data_structure">
+                      <br>
+                      <h1 class="w3-wide w3-center" style="padding-bottom:1%;padding-top:1%;text-shadow:1px 1px 0 #444"><b>Data Structures</b></h1>  
+                      <div class="description">
+                      <div class="mrmy" style="padding-bottom:1%;padding-top:1%;"><h3><b><i>"I've got a theory that the early bird gets the worm, but the second mouse gets the cheese." - Steven Wright</i></b></h3></div>
+                      <h5>A data structure is a way of organizing data so that it can be used efficiently. Data structures are used in programming to store, retrieve, and manipulate data.
+                        <br>
+                        <br>
+                        There are many different data structures, each with its own advantages and disadvantages. Some of the most common data structures include:
+                        <br>
+                        <ul>
+                          <li><b>Arrays</b>: An array is a data structure that stores elements of the same data type in contiguous memory locations. Arrays are efficient for accessing elements by index, but they can be inefficient for inserting and deleting elements.</li>
+                          <li><b>Linked lists</b>: A linked list is a data structure that stores elements in a linked list, where each element contains a pointer to the next element in the list. Linked lists are efficient for inserting and deleting elements, but they can be inefficient for accessing elements by index.</li>
+                          <li><b>Stacks</b>: A stack is a data structure that stores elements in a last-in, first-out (LIFO) order. Stacks are efficient for storing and retrieving the most recently added element, but they can be inefficient for accessing elements that were added earlier.</li>
+                          <li><b>Queues</b>: A queue is a data structure that stores elements in a first-in, first-out (FIFO) order. Queues are efficient for storing and retrieving the oldest element, but they can be inefficient for accessing elements that were added later.</li>
+                          <li><b>Hash tables</b>: A hash table is a data structure that stores elements by their hash value. Hash tables are efficient for accessing elements by their hash value, but they can be inefficient for inserting and deleting elements.</li>
+                        </ul>
+                        The best data structure for a particular application depends on the specific requirements of the application.
+                      </h5>
+                      <br>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="bubble_sort.html" style="text-decoration: none;"><footer class="w3-container w3-center w3-block btn w3-black w3-hover-grey">
+                    <h5>LEARN NOW!</h5>
+                    </footer></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+
+      <!-- Footer -->
+      <footer class="w3-center w3-black w3-padding-64">
+        <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+      </footer>
+
+      <script>
+        // Modal Image Gallery
+        function onClick(element) {
+          document.getElementById("img01").src = element.src;
+          document.getElementById("modal01").style.display = "block";
+          var captionText = document.getElementById("caption");
+          captionText.innerHTML = element.alt;
+        }
+
+
+        // Toggle between showing and hiding the sidebar when clicking the menu icon
+        var mySidebar = document.getElementById("mySidebar");
+
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+          } else {
+            mySidebar.style.display = 'block';
+          }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+      </script>
+
+    </body>
+</html>

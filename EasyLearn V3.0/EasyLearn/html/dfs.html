@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Algorithm - DFS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="../js/login.js"></script>
+<script src="../js/jquery-3.7.0.min.js"></script>
+<link rel="stylesheet" href="../css/prism.css">
+<script src="../js/prism.js"></script>
+<link rel="stylesheet" href="../css/card.css">
+<link rel="stylesheet" href="../css/cat1.css">
+<script src="../js/choicecard.js"></script>
+<script src="../js/changecard.js"></script>
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/pages.css">
+<script>
+    $(document).ready(function(){
+        let timer = null
+        $("div#talk1").hide();
+        $("div#talk2").hide();
+        $("div#mascot").click(function(){
+            clearTimeout(timer)
+            timer = setTimeout(function () {
+            $("div#talk1").delay("fast").fadeIn();
+            $("div#talk1").delay("slow").fadeOut();
+        }, 500)
+        });
+        $("div#mascot").dblclick(function(){
+            clearTimeout(timer)
+            $("div#talk2").delay("fast").fadeIn();
+            $("div#talk2").delay("slow").fadeOut();
+        });
+        $("div#mascot").click(function(){
+            $("div#mascot").animate({bottom: "4%"},"fast");
+            $("div#mascot").animate({bottom: "2%"});
+        });
+    });
+</script>
+<style>
+#mascot{
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    z-index: 1;
+    }
+.talk{
+    position: fixed;
+    bottom : 20%;
+    right: 11%;
+    z-index: 1;
+    display:none；
+}
+</style>
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/mac.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+.text-style {
+  font-size: 21px;
+  padding-left: 30px; /* 左侧间距 */
+  padding-right: 50px; /* 右侧间距 */
+}
+
+.second-title-style {
+  font-size: 24px;
+  padding-left: 30px;
+}
+</style>
+</head>
+<body>
+  <a name="home" id="home"></a>
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+    <!--div style="vertical-align: middle">
+      <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+      <div id="wel" style="display: none;float: left;">
+        <p><label id="greeting"></label>, <label id="un"></label></p>
+      </div>
+    </div>
+<style>
+#wel{
+   margin: auto 8%;
+}
+</style-->
+<!--script>showUserName()</script>
+<script>showGreeting()</script-->
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html#about" class="w3-bar-item w3-button">INTRO</a>
+      <a href="team.html" class="w3-bar-item w3-button"> TEAM</a>
+      <a href="learn_now.html" class="w3-bar-item w3-button"><strong>LEARN NOW!</strong></a>
+      <a href="onlinejudge.html" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+      <a id="lognt" href="login.html" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">INTRO</a>
+  <a href="team.html" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="learn_now.html" onclick="w3_close()" class="w3-bar-item w3-button">LEARN NOW!</a>
+  <a href="onlinejudge.html" onclick="w3_close()" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+  <a id="lognt2" href="login.html" onclick="w3_close()" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+</nav>
+<script>showlogbutton();</script>
+<div class="w3-sidebar w3-bar-block" style="width:20%;margin-top:70px;right: 0;height:calc(100vh - 200px);">
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Sorting<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="bubble_sort.html" class="w3-bar-item w3-button">Bubble Sort</a>
+        <a href="selection_sort.html" class="w3-bar-item w3-button">Selection Sort</a>
+        <a href="merge_sort.html" class="w3-bar-item w3-button">Merge Sort</a>
+        <a href="quick_sort.html" class="w3-bar-item w3-button">Quick Sort</a>
+        <a href="heap_sort.html" class="w3-bar-item w3-button">Heap Sort</a>
+      </div>
+  </div>
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Searching<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="bfs.html" class="w3-bar-item w3-button">BFS</a>
+        <a href="dfs.html" class="w3-bar-item w3-button">DFS</a>
+      </div>
+  </div>
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Data Structures<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="Array.html" class="w3-bar-item w3-button">Array</a>
+        <a href="Structure.html" class="w3-bar-item w3-button">Struct Data Structure</a>
+        <a href="Linked_List.html" class="w3-bar-item w3-button">Linked List</a>
+        <a href="Queue.html" class="w3-bar-item w3-button">Queue</a>
+        <a href="heap.html" class="w3-bar-item w3-button">Heap</a>
+        <a href="tree.html" class="w3-bar-item w3-button">Tree</a>
+        <a href="stack.html" class="w3-bar-item w3-button">Stack</a>
+        <a href="graph.html" class="w3-bar-item w3-button">Graph</a>
+      </div>
+  </div>
+</div>
+<div class="content" style="margin-right: 20%;">
+  <div class="w3-container">
+      <p class="w3-jumbo topics w3-animate-top"><b>Depth-First Search</b></p>
+      <div style="margin-top: 30px;"></div>
+      <div class="w3-left-align">
+            <p class="text-style">
+              Depth First Search (DFS): an algorithm for traversing or searching a tree or graph. Traverse the nodes along the depth of the tree and search the branches of the tree as deeply as possible. When all the edges of node v have been explored or the node does not satisfy the condition at the time of search, the search goes back to the starting node of the edge where node v was found. The process is repeated until all nodes have been visited.
+            </p>
+      </div>
+      <img src="../image/dfs.gif" alt="DFS GIF" style="width: 60%; height: auto;">
+    
+      <p class="text-style">The basic writing method of dfs is recursive, the following is the sample code of the classic dfs topic "All Arrangements".</p>
+      <p class="second-title-style">Example - All Arrangements</p>
+      <p class="text-style">Taking any m (m ≤ n) elements from n different elements and arranging them in a certain order is called a permutation of m elements from n different elements. All permutations when m=n are called full permutations.</p>
+      <div class="w3-panel w3-card w3-light-grey">
+          <h3>DFS - All Arrangements</h3>
+          <div class="w3-code notranslate"><pre data-src="assets/style.css"><code class="language-clike">
+int n;// Array to store the results
+int path[N]; // Array used to indicate whether an element has been used or not.
+bool st[N]; // array to mark whether an element has been used or not
+            
+void dfs(int u) {// Output this if dfs layer == max depth
+    if (u == n) {
+        for (int i = 0; i < n; i++)
+            printf("%d ", path[i]);
+        return;
+    }
+     // Depth-first traversal
+    for (int i = 1; i <= n; i++) {// Check for duplicates at each element traversed
+        if (!st[i]) {
+            // Set the value of the current position
+            path[u] = i; // mark this value as duplicated.
+            st[i] = true; // continue traversing down the path; st[u] = i; // mark this value as used
+            dfs(u + 1);// revert to the original
+            st[i] = false; }
+        }
+    }
+
+</code></pre></div>
+      </div>  
+
+      <div id="123" class="w3-panel w3-card w3-light-grey" style="font-family: Verdana, Geneva, sans-serif;">
+
+        <h3>Quiz Question</h3>
+            
+      
+      <ol style="list-style: none;">
+    
+      <div class="w3-container" style="overflow: hidden;margin: 0 auto;">
+      
+        <!--<div class="w3-white w3-round-large"> -->
+         <!--	<div class="w3-container w3-grey w3-round-large" style="width:0%">0%</div> -->
+       <!--</div> -->
+        <div class="w3-white">
+            <div id="myBar" class="w3-container w3-blue w3-center" style="width:0%">0%</div>
+        </div>
+        <div class="w3-card-1" id="card1" style="padding-top:2%;display:flex">
+        <!--题目开始-->
+            <li>
+        <strong><p>1.What does DFS stand for in computer science?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="Data File System" onClick="checkans(1,1,9)"> Data File System
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="Depth-First Search" onClick="checkans(2,1,9)"> Depth-First Search
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="Directed File System" onClick="checkans(3,1,9)"> Directed File System
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="Dynamic File Storage" onClick="checkans(4,1,9)"> Dynamic File Storage
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(1)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+            <div class="w3-bar" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border w3-disabled" id="prevButton" onClick="changepage(0,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border " id="nextButton" onClick="changepage(0,1)">Next  &#10095;</button>
+            </div>
+        <!--<button id="prevButton" onClick="changepage(0,0)" style="opacity: 0.6; cursor: not-allowed">< Previous </button>-->
+            <!--<button id="nextButton" onClick="changepage(0,1)">Next ></button>-->
+        </li>
+            <!--题目结束-->	
+      </div>
+        <div class="w3-card-1" id="card2" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>2.In DFS, what data structure is typically used to keep track of the nodes to be visited?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="Queue" onClick="checkans(1,2,9)"> Queue
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="Stack" onClick="checkans(2,2,9)"> Stack
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="Linked List" onClick="checkans(3,2,9)"> Linked List
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="Binary Tree" onClick="checkans(4,2,9)"> Binary Tree
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(2)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(1,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border" id="nextButton" onClick="changepage(1,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+        <div class="w3-card-1" id="card3" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>3.What is the worst-case time complexity of DFS for traversing a graph with V vertices and E edges?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="O(V)" onClick="checkans(1,3,9)"> O(V)
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="O(E)" onClick="checkans(2,3,9)"> O(E)
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="O(V + E)" onClick="checkans(3,3,9)"> O(V + E)
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="O(log V)" onClick="checkans(4,3,9)"> O(log V)
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(3)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(2,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border" id="nextButton" onClick="changepage(2,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+      <div class="w3-card-1" id="card4" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>4.Which of the following is an advantage of DFS over BFS?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="DFS guarantees the shortest path between two nodes." onClick="checkans(1,4,9)"> DFS guarantees the shortest path between two nodes.
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="DFS uses less memory compared to BFS." onClick="checkans(2,4,9)"> DFS uses less memory compared to BFS.
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="DFS is faster than BFS for finding the shortest path." onClick="checkans(3,4,9)"> DFS is faster than BFS for finding the shortest path.
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="DFS can find all paths between two nodes." onClick="checkans(4,4,9)"> DFS can find all paths between two nodes.
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(4)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(3,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border w3-disabled"  id="nextButton" onClick="changepage(3,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+       
+            <!-- 在此添加更多的卡片 -->
+        </div>
+    
+        
+      </ol>
+    </div>
+    <!------------------------ 分界线 ------------------------------>
+  <button class="w3-button w3-round w3-light-grey"><a href="onlinejudge.html">Try it your self!</a></button>
+  </div>
+</div>
+<br>
+
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+</footer>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+<script src="../js/conmment.js"></script>
+<script>
+  renderComments();
+</script>
+</body>
+</html>

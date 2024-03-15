@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Algorithm - Quick sort</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="../js/login.js"></script>
+<script src="../js/jquery-3.7.0.min.js"></script>
+<link rel="stylesheet" href="../css/prism.css">
+<script src="../js/prism.js"></script>
+<link rel="stylesheet" href="../css/card.css">
+<link rel="stylesheet" href="../css/cat1.css">
+<script src="../js/choicecard.js"></script>
+<script src="../js/changecard.js"></script>
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/pages.css">
+<script>
+    $(document).ready(function(){
+        let timer = null
+        $("div#talk1").hide();
+        $("div#talk2").hide();
+        $("div#mascot").click(function(){
+            clearTimeout(timer)
+            timer = setTimeout(function () {
+            $("div#talk1").delay("fast").fadeIn();
+            $("div#talk1").delay("slow").fadeOut();
+        }, 500)
+        });
+        $("div#mascot").dblclick(function(){
+            clearTimeout(timer)
+            $("div#talk2").delay("fast").fadeIn();
+            $("div#talk2").delay("slow").fadeOut();
+        });
+        $("div#mascot").click(function(){
+            $("div#mascot").animate({bottom: "4%"},"fast");
+            $("div#mascot").animate({bottom: "2%"});
+        });
+    });
+</script>
+<style>
+#mascot{
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    z-index: 1;
+    }
+.talk{
+    position: fixed;
+    bottom : 20%;
+    right: 11%;
+    z-index: 1;
+    display:none；
+}
+</style>
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/mac.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+.text-style {
+  font-size: 21px;
+  padding-left: 30px; /* 左侧间距 */
+  padding-right: 50px; /* 右侧间距 */
+}
+
+.second-title-style {
+  font-size: 24px;
+  padding-left: 30px;
+}
+</style>
+</head>
+<body>
+  <a name="home" id="home"></a>
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+    <!--div style="vertical-align: middle">
+      <a href="index.html#home" ><img src="../image/logo.jpg" width=auto height="60px" style="float: left"></a>
+      <div id="wel" style="display: none;float: left;">
+        <p><label id="greeting"></label>, <label id="un"></label></p>
+      </div>
+    </div>
+<style>
+#wel{
+   margin: auto 8%;
+}
+</style-->
+<!--script>showUserName()</script>
+<script>showGreeting()</script-->
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html#about" class="w3-bar-item w3-button">INTRO</a>
+      <a href="team.html" class="w3-bar-item w3-button"> TEAM</a>
+      <a href="learn_now.html" class="w3-bar-item w3-button"><strong>LEARN NOW!</strong></a>
+      <a href="onlinejudge.html" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+      <a id="lognt" href="login.html" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">INTRO</a>
+  <a href="team.html" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="learn_now.html" onclick="w3_close()" class="w3-bar-item w3-button">LEARN NOW!</a>
+  <a href="onlinejudge.html" onclick="w3_close()" class="w3-bar-item w3-button">ONLINE JUDGE</a>
+  <a id="lognt2" href="login.html" onclick="w3_close()" class="w3-bar-item w3-button"> LOG IN/SIGN UP</a>
+</nav>
+<script>showlogbutton();</script>
+
+<div class="w3-sidebar w3-bar-block" style="width:20%;margin-top:70px;right: 0;height:calc(100vh - 200px);">
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Sorting<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="bubble_sort.html" class="w3-bar-item w3-button">Bubble Sort</a>
+        <a href="selection_sort.html" class="w3-bar-item w3-button">Selection Sort</a>
+        <a href="merge_sort.html" class="w3-bar-item w3-button">Merge Sort</a>
+        <a href="quick_sort.html" class="w3-bar-item w3-button">Quick Sort</a>
+        <a href="heap_sort.html" class="w3-bar-item w3-button">Heap Sort</a>
+      </div>
+  </div>
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Searching<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="bfs.html" class="w3-bar-item w3-button">BFS</a>
+        <a href="dfs.html" class="w3-bar-item w3-button">DFS</a>
+      </div>
+  </div>
+  <div class="w3-dropdown-hover">
+      <button class="w3-button">Data Structures<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="Array.html" class="w3-bar-item w3-button">Array</a>
+        <a href="Structure.html" class="w3-bar-item w3-button">Struct Data Structure</a>
+        <a href="Linked_List.html" class="w3-bar-item w3-button">Linked List</a>
+        <a href="Queue.html" class="w3-bar-item w3-button">Queue</a>
+        <a href="heap.html" class="w3-bar-item w3-button">Heap</a>
+        <a href="tree.html" class="w3-bar-item w3-button">Tree</a>
+        <a href="stack.html" class="w3-bar-item w3-button">Stack</a>
+        <a href="graph.html" class="w3-bar-item w3-button">Graph</a>
+      </div>
+  </div>
+</div>
+<div class="content" style="margin-right: 20%;">
+  <div class="w3-container">
+      <p class="w3-jumbo topics w3-animate-top"><b>Quick sort</b></p>
+      <div style="margin-top: 30px;"></div>
+      <div class="w3-left-align">
+          <p class="text-style">
+              Quicksort, also known as partition-exchange sort, or "fast sort" for short, is a widely used sorting algorithm.
+          </p>
+          <h3><strong>The Process</strong></h3>
+          <p class="text-style">
+              Quick Sort works by sorting an array by partitioning.
+
+              Quick sort is divided into three processes:<br>
+
+              Ⅰ.Divide the array into two parts (relative size relationship is required);<br>
+              Ⅱ.Recursion into the two sub-sequences of the fast sort;<br>
+              Ⅲ.There is no need to merge, because at this point the array is fully ordered.
+          </p>
+      </div>
+
+      <div class="w3-card" style="margin-left:2%;margin-right:5%">
+        <h4>Tutorial video</h4>
+        <div class="video-container">
+          <div style="text-align:center;">
+              <video controls width="80%" poster="../image/quick_sort_cover.jpg" style="align-items: center;">
+                <source src="../video/quick_sort_tutorial.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+          </div>
+            
+        </div>
+        <p>Tutorial video for quick sort</p>
+    </div>
+    
+      <p class="text-style">This is the example code of quick sort.</p>
+
+      <div class="w3-panel w3-card w3-light-grey">
+          <h3>Quick sort</h3>
+          <div class="w3-code notranslate"><pre data-src="assets/style.css"><code class="language-clike">
+struct Range {
+  int start, end;
+  Range(int s = 0, int e = 0) { start = s, end = e; }
+};
+// Function to perform quick sort on an array
+
+void quick_sort(T arr[], const int len) {
+  if (len <= 0) return;
+  Range r[len];
+  int p = 0; // Pointer to track the current partition
+  r[p++] = Range(0, len - 1); 
+  while (p) { 
+    Range range = r[--p]; // Get the next partition to process
+    if (range.start >= range.end) continue; 
+    T mid = arr[range.end];
+    int left = range.start, right = range.end - 1; // Initialize the left and right pointers
+    while (left < right) { // While the left and right pointers haven't crossed each other
+        while (arr[left] < mid && left < right) left++; 
+        while (arr[right] >= mid && left < right) right--; 
+        std::swap(arr[left], arr[right]); 
+    }
+    if (arr[left] >= arr[range.end]) // If the left pointer is at an element greater than or equal to the pivot
+        std::swap(arr[left], arr[range.end]); // Swap the pivot with that element
+    else
+        left++; // Increment the left pointer
+    r[p++] = Range(range.start, left - 1); 
+    r[p++] = Range(left + 1, range.end); 
+  }
+}
+
+</code></pre></div>
+      </div>  
+
+      <div id="123" class="w3-panel w3-card w3-light-grey" style="font-family: Verdana, Geneva, sans-serif;">
+
+        <h3>Quiz Question</h3>
+            
+      
+      <ol style="list-style: none;">
+    
+      <div class="w3-container" style="overflow: hidden;margin: 0 auto;">
+      
+        <!--<div class="w3-white w3-round-large"> -->
+         <!--	<div class="w3-container w3-grey w3-round-large" style="width:0%">0%</div> -->
+       <!--</div> -->
+        <div class="w3-white">
+            <div id="myBar" class="w3-container w3-blue w3-center" style="width:0%">0%</div>
+        </div>
+        <div class="w3-card-1" id="card1" style="padding-top:2%;display:flex">
+        <!--题目开始-->
+            <li>
+        <strong><p>1.What is the average time complexity of Quick Sort?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="O(n)" onClick="checkans(1,1,7)"> O(n)
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="O(nlogn)" onClick="checkans(2,1,7)"> O(nlogn)
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="O(2n)" onClick="checkans(3,1,7)"> O(2n)
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="O(n^2)" onClick="checkans(4,1,7)"> O(n^2)
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(1)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+            <div class="w3-bar" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border w3-disabled" id="prevButton" onClick="changepage(0,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border " id="nextButton" onClick="changepage(0,1)">Next  &#10095;</button>
+            </div>
+        <!--<button id="prevButton" onClick="changepage(0,0)" style="opacity: 0.6; cursor: not-allowed">< Previous </button>-->
+            <!--<button id="nextButton" onClick="changepage(0,1)">Next ></button>-->
+        </li>
+            <!--题目结束-->	
+      </div>
+        <div class="w3-card-1" id="card2" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>2.Which of the following describes the process of the Quick Sort algorithm?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="Divide and conquer" onClick="checkans(1,2,7)"> Divide and conquer
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="Merge and conquer" onClick="checkans(2,2,7)"> Merge and conquer
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="Bubble up and down" onClick="checkans(3,2,7)"> Bubble up and down
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="Insert and delete" onClick="checkans(4,2,7)"> Insert and delete
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(2)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(1,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border" id="nextButton" onClick="changepage(1,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+        <div class="w3-card-1" id="card3" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>3.In the worst-case scenario, when does Quick Sort perform poorly?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="When the input data is already sorted." onClick="checkans(1,3,7)"> When the input data is already sorted.
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="When the pivot element is always chosen as the middle element." onClick="checkans(2,3,7)"> When the pivot element is always chosen as the middle element.
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="When the input data contains duplicate values." onClick="checkans(3,3,7)"> When the input data contains duplicate values.
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="When the pivot element consistently divides the array into uneven halves." onClick="checkans(4,3,7)"> When the pivot element consistently divides the array into uneven halves.
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(3)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(2,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border" id="nextButton" onClick="changepage(2,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+      <div class="w3-card-1" id="card4" style="display:none;">
+            <!--题目开始-->
+            <li>
+        <strong><p>4.In Quick Sort, which element is chosen as the pivot during each partitioning step?</p ></strong>
+        <ol type="A" style="padding-bottom:3%">
+        <li><div class="cat1-button">
+          
+        
+            <label class="ans1" style="width:300px;">
+          <input type="radio" class="A" name="fom" value="The first element of the array" onClick="checkans(1,4,7)"> The first element of the array
+            </label></div></li>
+            
+        
+        <li><div class="cat1-button">
+            <label class="ans2">
+                <input type="radio" class="B" name="fom" value="The last element of the array" onClick="checkans(2,4,7)"> The last element of the array
+        </label></div></li>
+        
+        
+        <li><div class="cat1-button">
+            <label class="ans3">
+                <input type="radio" class="C" name="fom" value="A randomly selected element" onClick="checkans(3,4,7)"> A randomly selected element
+        </label></div></li>
+            
+        
+            <li><div class="cat1-button">
+        <label class="ans4">
+                <input type="radio" class="D" name="fom" value="The middle element of the array" onClick="checkans(4,4,7)"> The middle element of the array
+            </label></div></li>
+            
+        </ol>
+        
+        <div class="#" style="padding-bottom:2%">
+            <button class="w3-button w3-light-grey w3-padding-small w3-border w3-border-grey" onClick="sbmt(4)">Submit</button> </div>
+        
+          <div class="feedback" style="display: none;"></div> <!--style="display: none;"-->
+            <p></p>
+        <div class="w3-show-inline-block" style="padding-top:2%">
+                <button class="w3-button w3-padding-small w3-border" id="prevButton" onClick="changepage(3,0)">&#10094; Prev </button>
+                <button class="w3-button w3-padding-small w3-border w3-disabled"  id="nextButton" onClick="changepage(3,1)">Next  &#10095;</button>
+            </div>
+            </li>
+        <!--题目结束-->	
+        </div>
+       
+            <!-- 在此添加更多的卡片 -->
+        </div>
+    
+        
+      </ol>
+    </div>
+    <!------------------------ 分界线 ------------------------------>
+  <button class="w3-button w3-round w3-light-grey"><a href="onlinejudge.html">Try it your self!</a></button>
+  </div>
+</div>
+<br>
+
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+</footer>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+<script src="../js/conmment.js"></script>
+<script>
+  renderComments();
+</script>
+</body>
+</html>

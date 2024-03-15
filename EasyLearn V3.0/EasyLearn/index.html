@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> EasyLearn </title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.15/swiper-bundle.min.css'>
+    <link rel="stylesheet" href="css/enter.css">
+</head>
+
+<body>
+    <section class="home-section">
+        <div class="blog">
+            <div class="blog-slider">
+                <div class="blog-slider_wrp swiper-wrapper">
+                    <div class="blog-slider_item swiper-slide">
+                        <div class="blog-slider_content">
+                            <span class="blog-slider_code">GETTING START!</span>
+                            <div class="blog-slider_title">Master Algorithms and Data Structures with our Powerful Learning Platform!</div>
+                            <div class="blog-slider_text">Welcome to our cutting-edge learning website dedicated to algorithms and data structures! Whether you’re a beginner looking to grasp the fundamentals or a seasoned programmer aiming to sharpen your skills, our platform offers a comprehensive set of resources tailored to meet your learning needs.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-slider_item swiper-slide">
+                        <div class="blog-slider_content">
+                            <span class="blog-slider_code">LEARNING MATERIALS!</span>
+                            <div class="blog-slider_title">Unleash Your Algorithmic Potential with our Extensive Learning Materials!</div>
+                            <div class="blog-slider_text">At our learning website, we take pride in offering an extensive range of learning materials to empower your algorithmic journey. Our team of experts has meticulously crafted in-depth tutorials to demystify complex concepts and guide you through the intricacies of algorithms and data structures.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-slider_item swiper-slide">
+                        <div class="blog-slider_content">
+                            <span class="blog-slider_code">ONLINE JUDGE!</span>
+                            <div class="blog-slider_title">Test, Challenge, and Refine Your Skills with our Online Judge System!</div>
+                            <div class="blog-slider_text">Ready to put your algorithmic skills to the test? Look no further! Our online judge system provides a dynamic platform for you to solve coding challenges, analyze algorithms, and sharpen your problem-solving prowess.</div>
+                            <a  href="html/index.html" >
+                                <button class="blog-slider_button">Enter And Try It Now!</button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="blog-slider_pagination"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.15/swiper-bundle.min.js'></script>
+    <script src="js/enter.js"></script>
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        for (var i = 0; i < arrow.length; i++) {
+            arrow[i].addEventListener("click", (e) => {
+                let arrowParent = e.target.parentElement.parentElement;
+                arrowParent.classList.toggle("showMenu");
+            });
+        }
+
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        });
+        sidebar.classList.toggle("close");
+    </script>
+    <script>showUserName()</script>
+    <script>showGreeting()</script>
+</body>
+
+</html>
