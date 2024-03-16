@@ -1,3 +1,3 @@
 # Nobody-or.github.io
-try everything
+try everything/n
 see the "master" branch
